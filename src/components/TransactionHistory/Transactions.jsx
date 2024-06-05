@@ -1,32 +1,46 @@
+import { Component } from "react";
 import PropTypes from "prop-types";
-import "./Transactions.css";
+import Styles from "./Transactions.module.css";
 
-TransactionHistory.propTypes = {
-    id: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    amount: PropTypes.number.isRequired,
-    currency: PropTypes.string.isRequired,
+
+export default class Transactions extends Component {
+  static defaultProps = {};
+  static propTypes = {
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        type: PropTypes.string,
+        amount: PropTypes.string,
+        currency: PropTypes.string,
+      }),
+    ),
   };
 
-export const TransactionHistory = ({ items }) => {
-  return (
-    <table className={css.transactionHistory}>
-      <thead>
-        <tr className={css.tableHead}>
-          <th className={css.tableHeadItem}>Type</th>
-          <th className={css.tableHeadItem}>Amount</th>
-          <th className={css.tableHeadItem}>Currency</th>
-        </tr>
-      </thead>
-      <tbody>
-        {items.map(item => (
-          <tr className={css.tableRow} key={item.id}>
-            <td className={css.tableItem}>{item.type}</td>
-            <td className={css.tableItem}>{item.amount}</td>
-            <td className={css.tableItem}>{item.currency}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-};
+  render() {
+    return (
+      <>
+        <section className={Styles.section_transaction_history}>
+          <table className={Styles.transaction_history}>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Currency</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {this.props.items.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.type}</td>
+                  <td>{item.amount}</td>
+                  <td>{item.currency}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+      </>
+    );
+  }
+}

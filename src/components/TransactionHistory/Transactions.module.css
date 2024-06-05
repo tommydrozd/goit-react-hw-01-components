@@ -1,0 +1,42 @@
+.section_transaction_history {
+  display: flex;
+  justify-content: center;
+  margin: 50px auto;
+}
+
+table {
+  border-radius: 8px;
+  width: 700px;
+  box-shadow: 1px 1px 6px 1px grey;
+}
+
+th {
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  color: white;
+}
+
+th:first-child {
+  border-top-left-radius: 6px;
+}
+
+th:last-child {
+  border-top-right-radius: 6px;
+}
+
+tr {
+  height: 50px;
+  text-align: center;
+  background-color: white;
+}
+
+tbody > tr:nth-child(even) {
+  background-image: linear-gradient(to bottom, #f7f7f7, #e7e7e7);
+}
+
+tbody > tr:last-child > td:first-child {
+  border-bottom-left-radius: 6px;
+}
+
+tbody > tr:last-child > td:last-child {
+  border-bottom-right-radius: 6px;
+}

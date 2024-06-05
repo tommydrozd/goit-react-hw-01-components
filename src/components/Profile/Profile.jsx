@@ -1,39 +1,55 @@
+import { Component } from "react";
 import PropTypes from "prop-types";
-import "./Profile.css";
+import styles from "./Profile.module.css";
 
-export const Profile = ({ username, tag, location, avatar, stats }) => {
-  return (
-    <>
-      <div className={css.profile}>
-        <div className={css.description}>
-          <img src={avatar} alt="User avatar" className={css.avatar} />
-          <p className={css.name}>{username}</p>
-          <p className={css.tag}>{tag}</p>
-          <p className={css.location}>{location}</p>
+export default class Profile extends Component {
+  static defaultProps = {};
+
+  static propTypes = {
+    username: PropTypes.string,
+    tag: PropTypes.string,
+    location: PropTypes.string,
+    avatar: PropTypes.string,
+    stats: PropTypes.shape({
+      followers: PropTypes.number,
+      views: PropTypes.number,
+      likes: PropTypes.number,
+    }),
+  };
+
+  render() {
+    return (
+      <section className={styles.section_profile}>
+        <div className={styles.profile}>
+          <div className={styles.description}>
+            <img
+              src={this.props.avatar}
+              alt="User avatar"
+              className={styles.avatar}
+            />
+            <p className={styles.name}>{this.props.username}</p>
+            <p className={styles.tag}>@{this.props.tag}</p>
+            <p className={styles.location}>{this.props.location}</p>
+          </div>
+
+          <ul className={styles.stats}>
+            <li>
+              <span className={styles.label}>Followers:</span>
+              <span className={styles.quantity}>
+                {this.props.stats.followers}
+              </span>
+            </li>
+            <li>
+              <span className={styles.label}>Views:</span>
+              <span className={styles.quantity}>{this.props.stats.views}</span>
+            </li>
+            <li>
+              <span className={styles.label}>Likes:</span>
+              <span className={styles.quantity}>{this.props.stats.likes}</span>
+            </li>
+          </ul>
         </div>
-        <ul className={css.stats}>
-          <li>
-            <span className={css.label}>Followers: </span>
-            <span className={css.quantity}>{stats.followers}</span>
-          </li>
-          <li>
-            <span className={css.label}>Views: </span>
-            <span className={css.quantity}>{stats.views}</span>
-          </li>
-          <li>
-            <span className={css.label}>Likes: </span>
-            <span className={css.quantity}>{stats.likes}</span>
-          </li>
-        </ul>
-      </div>
-    </>
-  );
-};
-
-Profile.propTypes = {
-  username: PropTypes.string.isRequired,
-  tag: PropTypes.string.isRequired,
-  location: PropTypes.string.isRequired,
-  avatar: PropTypes.string.isRequired,
-  stats: PropTypes.object.isRequired,
-};
+      </section>
+    );
+  }
+}
