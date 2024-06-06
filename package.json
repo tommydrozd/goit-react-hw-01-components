@@ -2,7 +2,6 @@
   "name": "react-playground",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://tommydrozd.github.io/goit-react-hw-01-components/",
   "type": "module",
   "scripts": {
     "dev": "vite",
